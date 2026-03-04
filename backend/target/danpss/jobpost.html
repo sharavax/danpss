@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DANPSS Post Job / Internship</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+    background:linear-gradient(135deg,#0d6efd,#6610f2);
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    padding:20px 0;
+}
+
+.post-card{
+    background:white;
+    border-radius:12px;
+    padding:30px 20px;
+    margin-top:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+.post-card h3{
+    font-size:clamp(1.3rem, 5vw, 1.75rem);
+    margin-bottom:1.5rem;
+}
+
+.post-card h5{
+    font-size:clamp(1.1rem, 4vw, 1.3rem);
+    margin:1.5rem 0 1rem 0;
+    font-weight:600;
+}
+
+.post-card .form-label{
+    font-weight:500;
+    font-size:0.95rem;
+    margin-bottom:0.4rem;
+}
+
+.post-card .form-control,
+.post-card .form-select,
+.post-card .form-check{
+    border-radius:8px;
+    border:1px solid #ddd;
+    padding:0.6rem 0.9rem;
+}
+
+.post-card .form-control:focus,
+.post-card .form-select:focus{
+    border-color:#0d6efd;
+    box-shadow:0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+.post-card .btn{
+    padding:0.7rem 1.5rem;
+    font-weight:500;
+    border-radius:8px;
+}
+
+.post-card .row{
+    margin-left:-0.5rem;
+    margin-right:-0.5rem;
+}
+
+@media(max-width:768px){
+    .post-card{
+        padding:25px 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ✅ Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<div class="container">
+<a class="navbar-brand fw-bold" href="index.html">DANPSS</a>
+
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="menu">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="alumnireg.html">Alumni</a></li>
+<li class="nav-item"><a class="nav-link" href="studentprofile.html">Students</a></li>
+<li class="nav-item"><a class="nav-link" href="jobpost.html">Placements</a></li>
+<li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="col-12 col-lg-9 col-xl-8">
+
+<div class="post-card">
+
+<h3 class="text-center text-primary mb-4">
+Post Job / Internship - DANPSS
+</h3>
+
+<form action="/danpss/job/post" method="post" onsubmit="return validatePostForm()" novalidate>
+
+<!-- TYPE SELECTION -->
+<div class="mb-3">
+<label>Post Type</label>
+<select id="jobPostType" name="jobPostType" class="form-select" onchange="toggleInternshipFields()">
+<option>Job</option>
+<option>Internship</option>
+</select>
+</div>
+
+<hr>
+
+<h5 class="text-secondary">Basic Details</h5>
+
+<div class="row">
+<div class="col-md-6 mb-3">
+<label>Title / Role</label>
+<input type="text" id="jobTitle" name="jobTitle" class="form-control" placeholder="Software Engineer / Intern" required>
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Company</label>
+<input type="text" id="jobCompany" name="jobCompany" class="form-control" placeholder="Company Name" required>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-6 mb-3">
+<label>Location</label>
+<input type="text" id="jobLocation" name="jobLocation" class="form-control" placeholder="Hyderabad / Remote">
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Job Type</label>
+<select id="jobJobType" name="jobJobType" class="form-select">
+<option>Full Time</option>
+<option>Part Time</option>
+<option>Internship</option>
+<option>Remote</option>
+</select>
+</div>
+</div>
+
+<div class="mb-3">
+<label>Eligibility</label>
+<textarea id="jobEligibility" name="jobEligibility" class="form-control" rows="3" placeholder="Skills, CGPA, Department..."></textarea>
+</div>
+
+<hr>
+
+<h5 class="text-secondary">Internship Details (if applicable)</h5>
+
+<div id="internshipSection" style="display:none;">
+<div class="row">
+<div class="col-md-6 mb-3">
+<label>Duration (Months)</label>
+<input type="number" id="jobDuration" name="jobDuration" class="form-control" placeholder="e.g. 3">
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Stipend</label>
+<input type="text" id="jobStipend" name="jobStipend" class="form-control" placeholder="₹10,000 / month">
+</div>
+</div>
+</div>
+
+<div class="mb-3">
+<label>Posted Date</label>
+<input type="date" id="jobPostedDate" name="jobPostedDate" class="form-control">
+</div>
+
+<div class="d-grid mt-4">
+<button type="submit" class="btn btn-primary btn-lg">Post Opportunity</button>
+</div>
+
+</form>
+
+</div>
+</div>
+</div>
+</div>
+
+<script>
+function toggleInternshipFields(){
+    let postType = document.getElementById("jobPostType").value;
+    let internshipSection = document.getElementById("internshipSection");
+    
+    if(postType === "Internship"){
+        internshipSection.style.display = "block";
+    } else {
+        internshipSection.style.display = "none";
+    }
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="validation.js"></script>
+</body>
+</html>

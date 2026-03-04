@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Auto Login</title></head>
+<body>
+<form id="f" method="post" action="http://localhost:8080/danpss/login">
+  <input type="hidden" name="loginEmail" value="rec_screenshot@example.com" />
+  <input type="hidden" name="loginPass" value="pass123" />
+</form>
+<script>
+  setTimeout(function () { document.getElementById('f').submit(); }, 100);
+</script>
+</body>
+</html>

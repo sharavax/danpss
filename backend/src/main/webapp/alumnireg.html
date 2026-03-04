@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DANPSS Alumni Registration</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+    background:linear-gradient(135deg,#0d6efd,#6610f2);
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    padding:20px 0;
+}
+
+.form-card{
+    background:white;
+    padding:30px 20px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    margin-top:20px;
+}
+
+.form-card h3{
+    font-size:clamp(1.3rem, 5vw, 1.75rem);
+    margin-bottom:1.5rem;
+}
+
+.form-card h5{
+    font-size:clamp(1.1rem, 4vw, 1.3rem);
+    margin:1.5rem 0 1rem 0;
+    font-weight:600;
+}
+
+.form-card .form-label{
+    font-weight:500;
+    font-size:0.95rem;
+    margin-bottom:0.4rem;
+}
+
+.form-card .form-control,
+.form-card .form-select{
+    border-radius:8px;
+    border:1px solid #ddd;
+    padding:0.6rem 0.9rem;
+}
+
+.form-card .form-control:focus,
+.form-card .form-select:focus{
+    border-color:#0d6efd;
+    box-shadow:0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+.form-card .btn{
+    padding:0.7rem 1.5rem;
+    font-weight:500;
+    border-radius:8px;
+}
+
+.form-card .row{
+    margin-left:-0.5rem;
+    margin-right:-0.5rem;
+}
+
+@media(max-width:768px){
+    .form-card{
+        padding:25px 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ✅ Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<div class="container">
+<a class="navbar-brand fw-bold" href="index.html">DANPSS</a>
+
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="menu">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="alumnireg.html">Alumni</a></li>
+<li class="nav-item"><a class="nav-link" href="studentprofile.html">Students</a></li>
+<li class="nav-item"><a class="nav-link" href="jobpost.html">Placements</a></li>
+<li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="col-12 col-lg-8 col-xl-7">
+
+<div class="form-card">
+
+<h3 class="text-center mb-3 text-primary">Alumni Registration - DANPSS</h3>
+
+<form action="/danpss/alumni/register" method="post" onsubmit="return validateAlumniForm()" novalidate>
+
+<div class="row">
+<div class="col-md-6 mb-3">
+<label>Full Name</label>
+<input type="text" id="alumniName" name="alumniName" class="form-control" placeholder="Enter Name" required>
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Email</label>
+<input type="email" id="alumniEmail" name="alumniEmail" class="form-control" placeholder="Enter Email" required>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-6 mb-3">
+<label>Phone Number</label>
+<input type="tel" id="alumniPhone" name="alumniPhone" class="form-control" placeholder="Enter Phone" required>
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Graduation Year</label>
+<input type="number" id="alumniGraduationYear" name="alumniGraduationYear" class="form-control" placeholder="e.g. 2024">
+</div>
+</div>
+
+<div class="mb-3">
+<label>Department</label>
+<input type="text" id="alumniDepartment" name="alumniDepartment" class="form-control" placeholder="CSE / ECE / IT">
+</div>
+
+<hr>
+
+<h5 class="text-secondary">Professional Details</h5>
+
+<div class="row">
+<div class="col-md-6 mb-3">
+<label>Company</label>
+<input type="text" id="alumniCompany" name="alumniCompany" class="form-control" placeholder="Company Name">
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Designation</label>
+<input type="text" id="alumniDesignation" name="alumniDesignation" class="form-control" placeholder="Job Role">
+</div>
+</div>
+
+<div class="mb-3">
+<label>Experience (Years)</label>
+<input type="number" id="alumniExperience" name="alumniExperience" class="form-control" placeholder="Experience">
+</div>
+
+<div class="row">
+<div class="col-md-6 mb-3">
+<label>Password</label>
+<input type="password" id="alumniPass" name="alumniPass" class="form-control" required>
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Confirm Password</label>
+<input type="password" id="alumniCPass" name="alumniCPass" class="form-control" required>
+</div>
+</div>
+
+<div class="d-grid mt-3">
+<button type="submit" class="btn btn-primary">Register Alumni</button>
+</div>
+
+</form>
+
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="validation.js"></script>
+</body>
+</html>

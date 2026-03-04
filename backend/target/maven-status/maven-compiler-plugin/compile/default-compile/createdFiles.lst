@@ -1,0 +1,12 @@
+com\danpss\servlets\PlacementReportServlet.class
+com\danpss\servlets\JobPostServlet.class
+com\danpss\servlets\DashboardServlet$Rules.class
+com\danpss\servlets\RegisterServlet.class
+com\danpss\servlets\StudentProfileServlet.class
+com\danpss\servlets\AlumniRegisterServlet.class
+com\danpss\servlets\DashboardServlet$Recommendation.class
+com\danpss\servlets\JobsReportServlet.class
+com\danpss\servlets\LoginServlet.class
+com\danpss\servlets\DashboardServlet$StudentProfile.class
+com\danpss\servlets\DashboardServlet.class
+com\danpss\util\DBUtil.class
