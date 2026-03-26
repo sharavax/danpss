@@ -19,8 +19,7 @@
 <body>
 <div class="top-links">
     <a href="<%=request.getContextPath()%>/index.html">Home</a> |
-    <a href="<%=request.getContextPath()%>/reports/jobs">Jobs Report</a> |
-    <a href="<%=request.getContextPath()%>/logout.jsp">Logout</a>
+    <a href="<%=request.getContextPath()%>/reports/jobs">Jobs Report</a>
 </div>
 
 <h2>Placement Analytics Report</h2>

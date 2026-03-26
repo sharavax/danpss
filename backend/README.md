@@ -27,7 +27,6 @@ GET:
 - `/reports/placement` - JSP placement analytics report with search/filter (`search`, `department`, `graduationYear`, `company`)
 - `/reports/jobs` - JSP jobs/internship report with search/filter (`title`, `company`, `postType`, `location`)
 - `/dashboard` - personalized dashboard with recommendation matching rules (skills, eligibility, graduation year)
-- `/logout` - invalidate active session and return to login page
 
 ## SQL Analytics
 

@@ -6,19 +6,6 @@
 
     <display-name>DANPSS</display-name>
 
-    <listener>
-        <listener-class>com.danpss.util.JdbcCleanupListener</listener-class>
-    </listener>
-
-    <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>com.danpss.servlets.LogoutServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-
     <!-- welcome file (static index.html in webapp root) -->
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>

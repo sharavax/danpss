@@ -39,7 +39,6 @@
         <a href="<%=request.getContextPath()%>/index.html">Home</a>
         <a href="<%=request.getContextPath()%>/reports/placement">Placement Report</a>
         <a href="<%=request.getContextPath()%>/reports/jobs">Jobs Report</a>
-        <a href="<%=request.getContextPath()%>/logout.jsp">Logout</a>
     </div>
 </div>
 

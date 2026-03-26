@@ -35,7 +35,6 @@
                 <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/dashboard/alumni">Alumni Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/forms.html">Forms Hub</a></li>
                 <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/jobpost.html">Post Job</a></li>
-                <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/logout.jsp">Logout</a></li>
             </ul>
         </div>
     </div>
