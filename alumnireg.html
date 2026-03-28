@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DANPSS Alumni Registration</title>
-<<<<<<< HEAD
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="assets/css/app.css" rel="stylesheet">
 </head>
@@ -19,42 +18,62 @@
         <li class="nav-item"><a class="nav-link" data-nav href="/danpss/forms.html">Forms Hub</a></li>
         <li class="nav-item"><a class="nav-link" data-nav href="/danpss/dashboard">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" data-nav href="/danpss/login.html">Login</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav href="/danpss/logout.jsp">Logout</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<main class="page-shell">
+<main class="page-shell app-main" data-needs-lookups="true">
+  <section class="app-panel dashboard-hero mb-4">
+    <div class="dashboard-hero-copy">
+      <span class="kicker">Alumni Profile</span>
+      <h1 class="page-title mt-3">Alumni Registration</h1>
+      <p class="section-muted mb-0">Maintain your alumni profile and professional details so you can contribute to the hiring ecosystem with less friction.</p>
+    </div>
+    <div class="dashboard-side">
+      <div class="soft-card">
+        <div class="label">Outcome</div>
+        <div class="content">Profile and access created</div>
+        <div class="dashboard-note mt-2">Submitting this form creates the alumni record and login-ready account together.</div>
+      </div>
+    </div>
+  </section>
   <div class="form-shell">
     <div class="form-card">
-      <div class="text-center mb-2"><span class="kicker">Alumni Onboarding</span></div>`r`n      <h1 class="section-title text-center">Alumni Registration</h1>
+      <div class="text-center mb-2"><span class="kicker">Alumni Onboarding</span></div>
+      <h1 class="section-title text-center">Alumni Registration</h1>
       <p class="section-muted text-center">Create your alumni profile and career details for DANPSS.</p>
       <div id="alumniFormMessage" class="alert alert-danger d-none" role="alert"></div>
       <form action="/danpss/alumni/register" method="post" onsubmit="return validateAlumniForm()" novalidate>
         <div class="row g-3">
           <div class="col-md-6">
             <label class="form-label" for="alumniName">Full Name</label>
-            <input type="text" id="alumniName" name="alumniName" class="form-control" maxlength="100" required>
+            <input type="text" id="alumniName" name="alumniName" class="form-control" maxlength="100" autocomplete="name" required>
             <div class="invalid-feedback">Name is required.</div>
           </div>
           <div class="col-md-6">
             <label class="form-label" for="alumniEmail">Email</label>
-            <input type="email" id="alumniEmail" name="alumniEmail" class="form-control" maxlength="100" required>
+            <input type="email" id="alumniEmail" name="alumniEmail" class="form-control" maxlength="100" autocomplete="email" required>
             <div class="invalid-feedback">Valid email is required.</div>
           </div>
           <div class="col-md-6">
             <label class="form-label" for="alumniPhone">Phone Number</label>
-            <input type="tel" id="alumniPhone" name="alumniPhone" class="form-control" inputmode="numeric" maxlength="10" required>
+            <input type="tel" id="alumniPhone" name="alumniPhone" class="form-control" inputmode="numeric" maxlength="10" autocomplete="tel" required>
             <div class="invalid-feedback">Phone number must be 10 digits.</div>
           </div>
           <div class="col-md-6">
             <label class="form-label" for="alumniGraduationYear">Graduation Year</label>
-            <input type="number" id="alumniGraduationYear" name="alumniGraduationYear" class="form-control" min="1990" max="2100" required>
+            <select id="alumniGraduationYear" name="alumniGraduationYear" class="form-select" required>
+              <option value="">Select year</option>
+            </select>
             <div class="invalid-feedback">Year must be between 1990 and 2100.</div>
           </div>
           <div class="col-12">
             <label class="form-label" for="alumniDepartment">Department</label>
-            <input type="text" id="alumniDepartment" name="alumniDepartment" class="form-control" maxlength="50" required>
+            <select id="alumniDepartment" name="alumniDepartment" class="form-select" required>
+              <option value="">Select department</option>
+            </select>
             <div class="invalid-feedback">Department is required.</div>
           </div>
         </div>
@@ -64,12 +83,14 @@
         <div class="row g-3">
           <div class="col-md-6">
             <label class="form-label" for="alumniCompany">Company</label>
-            <input type="text" id="alumniCompany" name="alumniCompany" class="form-control" maxlength="100" required>
+            <input type="text" id="alumniCompany" name="alumniCompany" class="form-control" maxlength="100" list="alumniCompanyList" required>
+            <datalist id="alumniCompanyList"></datalist>
             <div class="invalid-feedback">Company is required.</div>
           </div>
           <div class="col-md-6">
             <label class="form-label" for="alumniDesignation">Designation</label>
-            <input type="text" id="alumniDesignation" name="alumniDesignation" class="form-control" maxlength="100" required>
+            <input type="text" id="alumniDesignation" name="alumniDesignation" class="form-control" maxlength="100" list="alumniDesignationList" required>
+            <datalist id="alumniDesignationList"></datalist>
             <div class="invalid-feedback">Designation is required.</div>
           </div>
           <div class="col-md-6">
@@ -79,12 +100,12 @@
           </div>
           <div class="col-md-6">
             <label class="form-label" for="alumniPass">Password</label>
-            <input type="password" id="alumniPass" name="alumniPass" class="form-control" minlength="6" required>
+            <input type="password" id="alumniPass" name="alumniPass" class="form-control" minlength="6" autocomplete="new-password" required>
             <div class="invalid-feedback">Minimum 6 characters.</div>
           </div>
           <div class="col-md-6">
             <label class="form-label" for="alumniCPass">Confirm Password</label>
-            <input type="password" id="alumniCPass" name="alumniCPass" class="form-control" minlength="6" required>
+            <input type="password" id="alumniCPass" name="alumniCPass" class="form-control" minlength="6" autocomplete="new-password" required>
             <div class="invalid-feedback">Passwords must match.</div>
           </div>
         </div>
@@ -95,7 +116,7 @@
       </form>
     </div>
   </div>
-  <footer class="page-footer">&copy; 2026 DANPSS | Alumni Engagement and Opportunity Contribution</footer>
+  <footer class="page-footer">&copy; 2026 DANPSS | Alumni Registration</footer>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -118,182 +139,3 @@ document.addEventListener("DOMContentLoaded", function () {
 </body>
 </html>
 
-=======
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<style>
-body{
-    background:linear-gradient(135deg,#0d6efd,#6610f2);
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    padding:20px 0;
-}
-
-.form-card{
-    background:white;
-    padding:30px 20px;
-    border-radius:12px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.2);
-    margin-top:20px;
-}
-
-.form-card h3{
-    font-size:clamp(1.3rem, 5vw, 1.75rem);
-    margin-bottom:1.5rem;
-}
-
-.form-card h5{
-    font-size:clamp(1.1rem, 4vw, 1.3rem);
-    margin:1.5rem 0 1rem 0;
-    font-weight:600;
-}
-
-.form-card .form-label{
-    font-weight:500;
-    font-size:0.95rem;
-    margin-bottom:0.4rem;
-}
-
-.form-card .form-control,
-.form-card .form-select{
-    border-radius:8px;
-    border:1px solid #ddd;
-    padding:0.6rem 0.9rem;
-}
-
-.form-card .form-control:focus,
-.form-card .form-select:focus{
-    border-color:#0d6efd;
-    box-shadow:0 0 0 0.2rem rgba(13, 110, 253, 0.15);
-}
-
-.form-card .btn{
-    padding:0.7rem 1.5rem;
-    font-weight:500;
-    border-radius:8px;
-}
-
-.form-card .row{
-    margin-left:-0.5rem;
-    margin-right:-0.5rem;
-}
-
-@media(max-width:768px){
-    .form-card{
-        padding:25px 15px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<!-- ✅ Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-<div class="container">
-<a class="navbar-brand fw-bold" href="index.html">DANPSS</a>
-
-<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
-<span class="navbar-toggler-icon"></span>
-</button>
-
-<div class="collapse navbar-collapse" id="menu">
-<ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-<li class="nav-item"><a class="nav-link" href="alumnireg.html">Alumni</a></li>
-<li class="nav-item"><a class="nav-link" href="studentprofile.html">Students</a></li>
-<li class="nav-item"><a class="nav-link" href="jobpost.html">Placements</a></li>
-<li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
-<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-</ul>
-</div>
-</div>
-</nav>
-
-<div class="container-fluid">
-<div class="row justify-content-center">
-<div class="col-12 col-lg-8 col-xl-7">
-
-<div class="form-card">
-
-<h3 class="text-center mb-3 text-primary">Alumni Registration - DANPSS</h3>
-
-<form action="/danpss/alumni/register" method="post" onsubmit="return validateAlumniForm()" novalidate>
-
-<div class="row">
-<div class="col-md-6 mb-3">
-<label>Full Name</label>
-<input type="text" id="alumniName" name="alumniName" class="form-control" placeholder="Enter Name" required>
-</div>
-
-<div class="col-md-6 mb-3">
-<label>Email</label>
-<input type="email" id="alumniEmail" name="alumniEmail" class="form-control" placeholder="Enter Email" required>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-6 mb-3">
-<label>Phone Number</label>
-<input type="tel" id="alumniPhone" name="alumniPhone" class="form-control" placeholder="Enter Phone" required>
-</div>
-
-<div class="col-md-6 mb-3">
-<label>Graduation Year</label>
-<input type="number" id="alumniGraduationYear" name="alumniGraduationYear" class="form-control" placeholder="e.g. 2024">
-</div>
-</div>
-
-<div class="mb-3">
-<label>Department</label>
-<input type="text" id="alumniDepartment" name="alumniDepartment" class="form-control" placeholder="CSE / ECE / IT">
-</div>
-
-<hr>
-
-<h5 class="text-secondary">Professional Details</h5>
-
-<div class="row">
-<div class="col-md-6 mb-3">
-<label>Company</label>
-<input type="text" id="alumniCompany" name="alumniCompany" class="form-control" placeholder="Company Name">
-</div>
-
-<div class="col-md-6 mb-3">
-<label>Designation</label>
-<input type="text" id="alumniDesignation" name="alumniDesignation" class="form-control" placeholder="Job Role">
-</div>
-</div>
-
-<div class="mb-3">
-<label>Experience (Years)</label>
-<input type="number" id="alumniExperience" name="alumniExperience" class="form-control" placeholder="Experience">
-</div>
-
-<div class="row">
-<div class="col-md-6 mb-3">
-<label>Password</label>
-<input type="password" id="alumniPass" name="alumniPass" class="form-control" required>
-</div>
-
-<div class="col-md-6 mb-3">
-<label>Confirm Password</label>
-<input type="password" id="alumniCPass" name="alumniCPass" class="form-control" required>
-</div>
-</div>
-
-<div class="d-grid mt-3">
-<button type="submit" class="btn btn-primary">Register Alumni</button>
-</div>
-
-</form>
-
-</div>
-</div>
-</div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="validation.js"></script>
-</body>
-</html>
->>>>>>> 414849608c4551c6b8b230b4fd34394e9265c393

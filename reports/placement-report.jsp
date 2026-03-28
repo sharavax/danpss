@@ -31,25 +31,30 @@
         <div class="collapse navbar-collapse" id="menu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/reports/placement">Placement Report</a></li>
-                <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/forms.html">Forms Hub</a></li>`r`n                <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/reports/jobs">Jobs Report</a></li>
+                <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/forms.html">Forms Hub</a></li>
+                <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/reports/jobs">Jobs Report</a></li>
                 <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/dashboard">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/logout.jsp">Logout</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="page-shell">
-    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
-        <div>
-            <span class="kicker">Report Module</span>
-            <h1 class="section-title mb-1">Placement Analytics Report</h1>
-            <p class="section-muted mb-0">Track student placement performance and department/company-level trends.</p>
+<div class="page-shell app-main" data-needs-lookups="true">
+    <section class="app-panel dashboard-hero mb-4">
+        <div class="dashboard-hero-copy">
+            <span class="kicker">Placement Report</span>
+            <h1 class="section-title mt-3">Placement Analytics</h1>
+            <p class="section-muted mb-0">Monitor placement performance, department outcomes, and hiring concentration through a cleaner management view.</p>
         </div>
-        <div class="d-flex gap-2 flex-wrap">
-            <a class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/index.html">Home</a>
-            <a class="btn btn-outline-primary" href="<%=request.getContextPath()%>/reports/jobs">Jobs Report</a>
+        <div class="dashboard-side">
+            <div class="soft-card">
+                <div class="label">Report Scope</div>
+                <div class="content"><%=safe(request.getAttribute("resultCount"))%> matching records</div>
+                <div class="dashboard-note mt-2">The report is restricted to placement officer access and built from structured student and company data.</div>
+            </div>
         </div>
-    </div>
+    </section>
     <% if (request.getAttribute("errorMessage") != null) { %>
     <div class="alert alert-danger"><%=safe(request.getAttribute("errorMessage"))%></div>
     <% } %>
@@ -62,15 +67,20 @@
             </div>
             <div class="col-md-6 col-xl-3">
                 <label class="form-label">Department</label>
-                <input class="form-control" type="text" name="department" placeholder="CSE / ECE / IT" value="<%=safe(request.getAttribute("department"))%>"/>
+                <select class="form-select" id="reportDepartment" name="department" data-selected="<%=safe(request.getAttribute("department"))%>">
+                    <option value="">Loading departments...</option>
+                </select>
             </div>
             <div class="col-md-6 col-xl-2">
                 <label class="form-label">Graduation Year</label>
-                <input class="form-control" type="text" name="graduationYear" placeholder="2026" value="<%=safe(request.getAttribute("graduationYear"))%>"/>
+                <select class="form-select" id="reportGraduationYear" name="graduationYear" data-selected="<%=safe(request.getAttribute("graduationYear"))%>">
+                    <option value="">All years</option>
+                </select>
             </div>
             <div class="col-md-6 col-xl-2">
                 <label class="form-label">Company</label>
-                <input class="form-control" type="text" name="company" placeholder="Company" value="<%=safe(request.getAttribute("company"))%>"/>
+                <input class="form-control" type="text" name="company" placeholder="Company" list="reportCompanyList" value="<%=safe(request.getAttribute("company"))%>"/>
+                <datalist id="reportCompanyList"></datalist>
             </div>
             <div class="col-md-6 col-xl-1 d-flex align-items-end">
                 <button class="btn btn-primary w-100" type="submit">Apply</button>

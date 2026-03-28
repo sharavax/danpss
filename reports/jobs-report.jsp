@@ -31,25 +31,30 @@
         <div class="collapse navbar-collapse" id="menu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/reports/jobs">Jobs Report</a></li>
-                <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/forms.html">Forms Hub</a></li>`r`n                <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/reports/placement">Placement Report</a></li>
+                <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/forms.html">Forms Hub</a></li>
+                <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/reports/placement">Placement Report</a></li>
                 <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/dashboard">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" data-nav href="<%=request.getContextPath()%>/logout.jsp">Logout</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="page-shell">
-    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
-        <div>
-            <span class="kicker">Report Module</span>
-            <h1 class="section-title mb-1">Jobs and Internship Report</h1>
-            <p class="section-muted mb-0">Search and filter opportunity data with unified placement analytics.</p>
+<div class="page-shell app-main" data-needs-lookups="true">
+    <section class="app-panel dashboard-hero mb-4">
+        <div class="dashboard-hero-copy">
+            <span class="kicker">Opportunity Report</span>
+            <h1 class="section-title mt-3">Jobs and Internships</h1>
+            <p class="section-muted mb-0">Search the live opportunity pipeline through a cleaner operational report.</p>
         </div>
-        <div class="d-flex gap-2 flex-wrap">
-            <a class="btn btn-outline-secondary" href="<%=request.getContextPath()%>/index.html">Home</a>
-            <a class="btn btn-outline-primary" href="<%=request.getContextPath()%>/reports/placement">Placement Report</a>
+        <div class="dashboard-side">
+            <div class="soft-card">
+                <div class="label">Report Scope</div>
+                <div class="content"><%=safe(request.getAttribute("resultCount"))%> visible results</div>
+                <div class="dashboard-note mt-2">Filters are backed by the same structured opportunity records used in matching.</div>
+            </div>
         </div>
-    </div>
+    </section>
     <% if (request.getAttribute("errorMessage") != null) { %>
     <div class="alert alert-danger"><%=safe(request.getAttribute("errorMessage"))%></div>
     <% } %>
@@ -62,7 +67,8 @@
             </div>
             <div class="col-md-6 col-xl-2">
                 <label class="form-label">Company</label>
-                <input class="form-control" type="text" name="company" placeholder="Company" value="<%=safe(request.getAttribute("company"))%>"/>
+                <input class="form-control" type="text" name="company" placeholder="Company" list="reportJobsCompanyList" value="<%=safe(request.getAttribute("company"))%>"/>
+                <datalist id="reportJobsCompanyList"></datalist>
             </div>
             <div class="col-md-6 col-xl-2">
                 <label class="form-label">Post Type</label>
@@ -74,17 +80,14 @@
             </div>
             <div class="col-md-6 col-xl-2">
                 <label class="form-label">Job Type</label>
-                <select class="form-select" name="jobType">
-                    <option value="">All Job Types</option>
-                    <option value="Full Time" <%= "Full Time".equals(request.getAttribute("jobType")) ? "selected" : "" %>>Full Time</option>
-                    <option value="Part Time" <%= "Part Time".equals(request.getAttribute("jobType")) ? "selected" : "" %>>Part Time</option>
-                    <option value="Internship" <%= "Internship".equals(request.getAttribute("jobType")) ? "selected" : "" %>>Internship</option>
-                    <option value="Remote" <%= "Remote".equals(request.getAttribute("jobType")) ? "selected" : "" %>>Remote</option>
+                <select class="form-select" id="reportJobType" name="jobType" data-selected="<%=safe(request.getAttribute("jobType"))%>">
+                    <option value="">Loading job types...</option>
                 </select>
             </div>
             <div class="col-md-6 col-xl-2">
                 <label class="form-label">Location</label>
-                <input class="form-control" type="text" name="location" placeholder="Location" value="<%=safe(request.getAttribute("location"))%>"/>
+                <input class="form-control" type="text" name="location" placeholder="Location" list="reportLocationList" value="<%=safe(request.getAttribute("location"))%>"/>
+                <datalist id="reportLocationList"></datalist>
             </div>
             <div class="col-md-6 col-xl-1 d-flex align-items-end">
                 <button class="btn btn-primary w-100" type="submit">Apply</button>
@@ -102,53 +105,39 @@
         <div class="col-md-6 col-xl-3"><div class="app-card kpi-card"><div class="kpi-label">Hiring Companies</div><div class="kpi-value"><%=safe(request.getAttribute("hiringCompanies"))%></div></div></div>
     </div>
 
-    <div class="app-card">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="h5 mb-0">Opportunity Results</h2>
-            <span class="badge badge-soft rounded-pill px-3 py-2"><%=safe(request.getAttribute("resultCount"))%> result(s)</span>
-        </div>
-        <div class="table-wrap">
-            <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
-                    <thead class="table-light">
-                    <tr>
-                        <th>ID</th>
-                        <th>Post Type</th>
-                        <th>Title</th>
-                        <th>Company</th>
-                        <th>Location</th>
-                        <th>Job Type</th>
-                        <th>Eligibility</th>
-                        <th>Duration</th>
-                        <th>Stipend</th>
-                        <th>Posted Date</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <%
-                        List<String[]> rows = (List<String[]>) request.getAttribute("rows");
-                        if (rows != null && !rows.isEmpty()) {
-                            for (String[] row : rows) {
-                    %>
-                    <tr>
-                        <td><%=safe(row[0])%></td>
-                        <td><%=safe(row[1])%></td>
-                        <td><%=safe(row[2])%></td>
-                        <td><%=safe(row[3])%></td>
-                        <td><%=safe(row[4])%></td>
-                        <td><%=safe(row[5])%></td>
-                        <td><%=safe(row[6])%></td>
-                        <td><%=safe(row[7])%></td>
-                        <td><%=safe(row[8])%></td>
-                        <td><%=safe(row[9])%></td>
-                    </tr>
-                    <%      }
-                        } else { %>
-                    <tr><td colspan="10" class="py-4"><div class="empty-state">No jobs or internships found for the selected filters.</div></td></tr>
-                    <% } %>
-                    </tbody>
-                </table>
+    <div class="app-card app-section">
+        <div class="section-head">
+            <div>
+                <h2 class="h5 mb-1">Opportunity Results</h2>
+                <p class="section-muted">Current jobs and internships matching the selected filters.</p>
             </div>
+            <span class="meta-chip"><%=safe(request.getAttribute("resultCount"))%> result(s)</span>
+        </div>
+        <div class="opportunity-list">
+            <%
+                List<String[]> rows = (List<String[]>) request.getAttribute("rows");
+                if (rows != null && !rows.isEmpty()) {
+                    for (String[] row : rows) {
+            %>
+            <div class="opportunity-card">
+                <div class="opportunity-meta">
+                    <span class="meta-chip"><%=safe(row[1])%></span>
+                    <span class="meta-chip"><%=safe(row[5])%></span>
+                    <span class="meta-chip"><%=safe(row[4])%></span>
+                </div>
+                <h3><%=safe(row[2])%></h3>
+                <p class="section-muted mb-2"><%=safe(row[3])%> • Posted <%=safe(row[9])%></p>
+                <p class="mb-2"><%=safe(row[6])%></p>
+                <div class="dashboard-note">
+                    <% if (!safe(row[7]).isEmpty()) { %>Duration <%=safe(row[7])%> months • <% } %>
+                    <% if (!safe(row[8]).isEmpty()) { %>Stipend <%=safe(row[8])%> • <% } %>
+                    Opportunity ID <%=safe(row[0])%>
+                </div>
+            </div>
+            <%      }
+                } else { %>
+            <div class="empty-state">No jobs or internships found for the selected filters.</div>
+            <% } %>
         </div>
     </div>
 

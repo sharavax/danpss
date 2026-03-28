@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DANPSS - Digital Alumni Networking & Placement Support</title>
-<<<<<<< HEAD
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="assets/css/app.css" rel="stylesheet">
 </head>
@@ -16,236 +15,125 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="menu">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto app-nav-primary">
         <li class="nav-item"><a class="nav-link" data-nav href="/danpss/index.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" data-nav href="/danpss/forms.html">Forms Hub</a></li>
         <li class="nav-item"><a class="nav-link" data-nav href="/danpss/dashboard">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" data-nav href="/danpss/reports/jobs">Reports</a></li>
+      </ul>
+      <ul class="navbar-nav app-nav-utility">
         <li class="nav-item"><a class="nav-link" data-nav href="/danpss/register.html">Register</a></li>
         <li class="nav-item"><a class="nav-link" data-nav href="/danpss/login.html">Login</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav href="/danpss/logout.jsp">Logout</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<section class="hero text-center">
+<section class="hero compact-hero">
   <div class="container">
-    <span class="kicker mb-3">Career + Alumni Platform</span>
-    <h1 class="display-5 fw-bold">Digital Alumni Networking and Placement Support System</h1>
-    <p class="lead mt-3 mb-4">A focused workflow: one account, one login, role-specific forms, and role-based dashboards.</p>
-    <div class="d-flex flex-wrap justify-content-center gap-2 hero-actions">
-      <a href="/danpss/register.html" class="btn btn-light btn-lg">Create Account</a>
-      <a href="/danpss/login.html" class="btn btn-outline-light btn-lg">Login</a>
-      <a href="/danpss/forms.html" class="btn btn-outline-light btn-lg">Open Forms Hub</a>
+    <div class="hero-copy hero-copy-centered">
+      <span class="kicker mb-3">Integrated Career Platform</span>
+      <h1 class="display-5 fw-bold">Digital Alumni Networking and Placement Support System</h1>
+      <p class="lead mt-3 mb-4">A polished placement platform for student readiness, alumni contribution, and placement operations in one connected experience.</p>
+      <div class="hero-tags mb-4 justify-content-center">
+        <span class="meta-chip">Role-based access</span>
+        <span class="meta-chip">Integrated forms</span>
+        <span class="meta-chip">Live recommendations</span>
+      </div>
+      <div class="d-flex flex-wrap gap-2 hero-actions justify-content-center">
+        <a href="/danpss/login.html" class="btn btn-light btn-lg">Open Dashboard</a>
+        <a href="/danpss/register.html" class="btn btn-outline-light btn-lg">Create Account</a>
+        <a href="/danpss/forms.html" class="btn btn-outline-light btn-lg">Manage Forms</a>
+      </div>
     </div>
   </div>
 </section>
 
 <div class="page-shell">
-  <div class="app-card mb-4">
-    <div class="stack-tight">
-      <span class="kicker">Simple Navigation</span>
+  <div class="app-card app-section mb-4">
+    <div class="section-head">
+      <div class="stack-tight">
+        <span class="kicker">Platform Flow</span>
+        <h2 class="h5 mb-0">One streamlined workflow</h2>
+      </div>
+      <p class="section-muted">Simple access, role-based workspaces, and connected placement operations.</p>
     </div>
-    <h2 class="h5">How DANPSS Works</h2>
     <div class="row g-3 mt-1">
-      <div class="col-md-3"><strong>1. Register</strong><div class="section-muted">Create one account for your role.</div></div>
-      <div class="col-md-3"><strong>2. Login</strong><div class="section-muted">Access the role router dashboard.</div></div>
-      <div class="col-md-3"><strong>3. Complete Form</strong><div class="section-muted">Use Forms Hub for Student/Alumni/Job data.</div></div>
-      <div class="col-md-3"><strong>4. Track Outcomes</strong><div class="section-muted">Use recommendations and placement reports.</div></div>
+      <div class="col-md-3"><strong>1. Register</strong><div class="section-muted">Create your role-based account.</div></div>
+      <div class="col-md-3"><strong>2. Access</strong><div class="section-muted">Enter the right workspace instantly.</div></div>
+      <div class="col-md-3"><strong>3. Manage</strong><div class="section-muted">Update profiles, forms, and opportunities.</div></div>
+      <div class="col-md-3"><strong>4. Track</strong><div class="section-muted">Use reports and recommendations with clarity.</div></div>
     </div>
+  </div>
+
+  <div class="section-head">
+    <div class="stack-tight">
+      <span class="kicker">Workspaces</span>
+      <h2 class="h5 mb-0">Choose the experience for your role</h2>
+    </div>
+    <p class="section-muted">Each workspace is tailored for a specific part of the placement journey.</p>
   </div>
 
   <div class="row g-4">
     <div class="col-md-4">
       <div class="app-card feature-card">
-        <h2 class="h5">Student Journey</h2>
-        <p class="section-muted">Profile completion, recommendation matching, and opportunity exploration.</p>
-        <a class="btn btn-primary btn-sm" href="/danpss/studentprofile.html">Student Form</a>
+        <h2 class="h5">Student Workspace</h2>
+        <p class="section-muted">Built for profile completion, recommendations, and opportunity tracking.</p>
+        <ul class="feature-list">
+          <li>Maintain a complete professional profile</li>
+          <li>Review matched opportunities quickly</li>
+          <li>Track readiness and job activity</li>
+        </ul>
+        <a class="btn btn-primary btn-sm" href="/danpss/dashboard">Open Student Workspace</a>
       </div>
     </div>
     <div class="col-md-4">
       <div class="app-card feature-card">
-        <h2 class="h5">Alumni Journey</h2>
-        <p class="section-muted">Alumni profile onboarding and contribution to student placement opportunities.</p>
-        <a class="btn btn-primary btn-sm" href="/danpss/alumnireg.html">Alumni Form</a>
+        <h2 class="h5">Alumni Workspace</h2>
+        <p class="section-muted">Designed for alumni engagement and contribution to hiring.</p>
+        <ul class="feature-list">
+          <li>Keep alumni details current</li>
+          <li>Publish opportunities for students</li>
+          <li>Support the placement ecosystem</li>
+        </ul>
+        <a class="btn btn-primary btn-sm" href="/danpss/dashboard">Open Alumni Workspace</a>
       </div>
     </div>
     <div class="col-md-4">
       <div class="app-card feature-card">
-        <h2 class="h5">Placement Journey</h2>
-        <p class="section-muted">Unified job/internship posting, analytics reports, and performance visibility.</p>
-        <a class="btn btn-primary btn-sm" href="/danpss/jobpost.html">Job Post Form</a>
+        <h2 class="h5">Placement Workspace</h2>
+        <p class="section-muted">Focused on operations, hiring visibility, and placement reporting.</p>
+        <ul class="feature-list">
+          <li>Track placement performance clearly</li>
+          <li>Review the live opportunity pipeline</li>
+          <li>Manage recommendation rules</li>
+        </ul>
+        <a class="btn btn-primary btn-sm" href="/danpss/dashboard">Open Officer Workspace</a>
       </div>
     </div>
   </div>
 
-  <div class="app-card mt-4">
-    <h2 class="h5">Quick Access</h2>
-    <div class="d-flex flex-wrap gap-2 mt-2">
-      <a href="/danpss/forms.html" class="btn btn-outline-dark">Forms Hub</a>
-      <a href="/danpss/reports/placement" class="btn btn-outline-primary">Placement Analytics Report</a>
-      <a href="/danpss/reports/jobs" class="btn btn-outline-secondary">Jobs and Internship Report</a>
-      <a href="/danpss/dashboard" class="btn btn-primary">Role Dashboard</a>
+  <div class="app-card app-section mt-4">
+    <div class="section-head">
+      <div class="stack-tight">
+        <span class="kicker">Quick Access</span>
+        <h2 class="h5 mb-0">Jump straight into the platform</h2>
+      </div>
+      <p class="section-muted">Open the most-used areas without extra navigation.</p>
+    </div>
+    <div class="shell-nav mt-2">
+      <a href="/danpss/dashboard" class="btn btn-primary">Dashboard</a>
+      <a href="/danpss/forms.html" class="btn btn-outline-dark">Forms</a>
+      <a href="/danpss/reports/jobs" class="btn btn-outline-secondary">Opportunities</a>
+      <a href="/danpss/reports/placement" class="btn btn-outline-primary">Placement Report</a>
     </div>
   </div>
 
-  <footer class="page-footer">&copy; 2026 DANPSS | Clean workflow design inspired by modern career and alumni platforms</footer>
+  <footer class="page-footer">&copy; 2026 DANPSS | Digital Alumni Networking and Placement Support System</footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/app-ui.js"></script>
 </body>
 </html>
-=======
-
-<!-- Bootstrap CDN -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<style>
-body{
-    background-color:#f4f7fb;
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-}
-
-.hero{
-    background: linear-gradient(135deg,#0d6efd,#6610f2);
-    color:white;
-    padding:50px 20px;
-    text-align:center;
-}
-
-.hero h1{
-    font-size:clamp(1.5rem, 5vw, 3rem);
-    margin-bottom:1rem;
-}
-
-.hero .lead{
-    font-size:clamp(1rem, 3vw, 1.5rem);
-    margin-bottom:1.5rem;
-}
-
-.hero .btn{
-    margin:0.5rem 0.25rem;
-}
-
-.feature-card{
-    transition:0.3s;
-    height:100%;
-}
-
-.feature-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 8px 20px rgba(0,0,0,0.15)!important;
-}
-
-.feature-card h4{
-    font-size:clamp(1.1rem, 2vw, 1.5rem);
-}
-
-.footer{
-    background:#111;
-    color:white;
-    padding:20px 15px;
-    text-align:center;
-    font-size:0.95rem;
-}
-</style>
-</head>
-
-<body>
-
-<!-- ✅ Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-<div class="container">
-<a class="navbar-brand fw-bold" href="#">DANPSS</a>
-
-<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
-<span class="navbar-toggler-icon"></span>
-</button>
-
-<div class="collapse navbar-collapse" id="menu">
-<ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-<li class="nav-item"><a class="nav-link" href="alumnireg.html">Alumni</a></li>
-<li class="nav-item"><a class="nav-link" href="studentprofile.html">Students</a></li>
-<li class="nav-item"><a class="nav-link" href="jobpost.html">Placements</a></li>
-<li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
-<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-</ul>
-</div>
-</div>
-</nav>
-
-<!-- ✅ Hero Section -->
-<section class="hero">
-<h1>DIGITAL ALUMNI NETWORKING & PLACEMENT SUPPORT SYSTEM</h1>
-<p class="lead">Connecting Students, Alumni & Career Opportunities in One Platform</p>
-<a href="register.html" class="btn btn-light btn-lg mt-3">Get Started</a>
-<a href="alumnireg.html" class="btn btn-outline-light btn-lg mt-3 ms-2">Alumni Registration</a>
-</section>
-
-<!-- ✅ Features Section -->
-<div class="container my-3 my-md-5">
-<div class="row g-3 text-center">
-
-<div class="col-12 col-sm-6 col-md-4">
-<div class="card feature-card shadow-sm h-100">
-<div class="card-body">
-<h4>🎓 Alumni Network</h4>
-<p class="card-text">Connect with alumni, explore career journeys and get mentorship support.</p>
-<a href="alumnireg.html" class="btn btn-primary btn-sm mt-3">Register as Alumni</a>
-</div>
-</div>
-</div>
-
-<div class="col-12 col-sm-6 col-md-4">
-<div class="card feature-card shadow-sm h-100">
-<div class="card-body">
-<h4>💼 Placement Support</h4>
-<p class="card-text">Access job postings, internships and placement training resources.</p>
-<a href="jobpost.html" class="btn btn-primary btn-sm mt-3">Browse Jobs</a>
-</div>
-</div>
-</div>
-
-<div class="col-12 col-sm-6 col-md-4">
-<div class="card feature-card shadow-sm h-100">
-<div class="card-body">
-<h4>👨‍🎓 Student Portal</h4>
-<p class="card-text">Create your profile, track placements and connect with opportunities.</p>
-<a href="studentprofile.html" class="btn btn-primary btn-sm mt-3">Create Profile</a>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- ✅ About Section -->
-<div class="container my-3 my-md-5">
-<div class="row g-4 align-items-center">
-<div class="col-12 col-md-6 mb-3 mb-md-0">
-<h2 class="fs-1">About DANPSS</h2>
-<p class="fs-5">
-DANPSS is a digital platform designed to bridge the gap between students and alumni.
-It enhances career guidance, professional networking, and placement opportunities
-through a centralized system.
-</p>
-</div>
-<div class="col-12 col-md-6">
-<img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
-class="img-fluid" alt="Alumni Network">
-</div>
-</div>
-</div>
-
-<!-- ✅ Footer -->
-<div class="footer">
-<p>© 2026 DANPSS | Developed by CSE Students</p>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="validation.js"></script>
-</body>
-</html>
->>>>>>> 414849608c4551c6b8b230b4fd34394e9265c393

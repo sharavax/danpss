@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -235,6 +234,60 @@ function validatePostForm() {
     return true;
 }
 
+function collectCheckedValues(name) {
+    return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked'))
+        .map(function (input) { return input.value.trim(); })
+        .filter(function (value) { return value !== ""; });
+}
+
+function syncStudentSkills() {
+    const hidden = document.getElementById("studentSkills");
+    if (!hidden) {
+        return;
+    }
+
+    const checked = collectCheckedValues("studentSkillChoice");
+    const custom = (document.getElementById("studentSkillCustom") || { value: "" }).value
+        .split(",")
+        .map(function (value) { return value.trim(); })
+        .filter(function (value) { return value !== ""; });
+
+    const merged = [];
+    checked.concat(custom).forEach(function (value) {
+        if (!merged.includes(value)) {
+            merged.push(value);
+        }
+    });
+    hidden.value = merged.join(", ");
+}
+
+function syncJobEligibility() {
+    const target = document.getElementById("jobEligibility");
+    if (!target) {
+        return;
+    }
+
+    const departments = collectCheckedValues("jobDepartmentChoice");
+    const years = collectCheckedValues("jobYearChoice");
+    const skills = collectCheckedValues("jobSkillChoice");
+    const notes = ((document.getElementById("jobEligibilityNotes") || { value: "" }).value || "").trim();
+
+    const parts = [];
+    if (departments.length > 0) {
+        parts.push("Departments: " + departments.join(", "));
+    }
+    if (years.length > 0) {
+        parts.push("Graduation Years: " + years.join(", "));
+    }
+    if (skills.length > 0) {
+        parts.push("Preferred Skills: " + skills.join(", "));
+    }
+    if (notes !== "") {
+        parts.push(notes);
+    }
+    target.value = parts.join(". ");
+}
+
 function validateRegisterForm() {
     if (!validateRequired(["regName", "regEmail", "regPhone", "regPass", "regCPass"], "registerFormMessage", "Please complete all required registration fields.")) {
         return false;
@@ -268,7 +321,9 @@ document.addEventListener("DOMContentLoaded", function () {
     initFormStatus("loginFormMessage", {
         invalid: "Invalid email or password.",
         server: "Unable to login right now. Please try again.",
-        session_required: "Please login to continue."
+        session_required: "Please login to continue.",
+        registered: "Registration successful. You can login now.",
+        alumni_registered: "Alumni registration successful. You can login now."
     });
 
     initFormStatus("registerFormMessage", {
@@ -278,7 +333,8 @@ document.addEventListener("DOMContentLoaded", function () {
         password_mismatch: "Password and confirm password must match.",
         role: "Please select a valid role.",
         exists: "Account already exists with this email.",
-        server: "Unable to register right now. Please try again."
+        server: "Unable to register right now. Please try again.",
+        registered: "Account created successfully."
     });
     const role = document.getElementById("role");
     if (role && role.value && !["Student", "Alumni", "Placement Officer"].includes(role.value)) {
@@ -294,268 +350,35 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleInternshipFields();
         postType.addEventListener("change", toggleInternshipFields);
     }
+
+    function wireDynamicLookupInputs() {
+        document.querySelectorAll('input[name="studentSkillChoice"]').forEach(function (input) {
+            input.addEventListener("change", syncStudentSkills);
+        });
+        const studentSkillCustom = document.getElementById("studentSkillCustom");
+        if (studentSkillCustom) {
+            studentSkillCustom.removeEventListener("input", syncStudentSkills);
+            studentSkillCustom.addEventListener("input", syncStudentSkills);
+            syncStudentSkills();
+        }
+
+        [
+            'input[name="jobDepartmentChoice"]',
+            'input[name="jobYearChoice"]',
+            'input[name="jobSkillChoice"]'
+        ].forEach(function (selector) {
+            document.querySelectorAll(selector).forEach(function (input) {
+                input.addEventListener("change", syncJobEligibility);
+            });
+        });
+        const jobEligibilityNotes = document.getElementById("jobEligibilityNotes");
+        if (jobEligibilityNotes) {
+            jobEligibilityNotes.removeEventListener("input", syncJobEligibility);
+            jobEligibilityNotes.addEventListener("input", syncJobEligibility);
+            syncJobEligibility();
+        }
+    }
+
+    wireDynamicLookupInputs();
+    document.addEventListener("danpss:lookups-loaded", wireDynamicLookupInputs);
 });
-=======
-// ===============================
-// DANPSS COMMON FORM VALIDATION
-// ===============================
-
-// EMAIL VALIDATION
-function validateEmail(email){
-    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return pattern.test(email);
-}
-
-// PHONE VALIDATION (10 digits)
-function validatePhone(phone){
-    const pattern = /^[0-9]{10}$/;
-    return pattern.test(phone);
-}
-
-// PASSWORD VALIDATION
-function validatePassword(password){
-    return password.length >= 6;
-}
-
-// ===============================
-// ALUMNI REGISTRATION VALIDATION
-// ===============================
-function validateAlumniForm(){
-    let name = document.getElementById("alumniName").value.trim();
-    let email = document.getElementById("alumniEmail").value.trim();
-    let phone = document.getElementById("alumniPhone").value.trim();
-    let graduationYear = document.getElementById("alumniGraduationYear").value.trim();
-    let department = document.getElementById("alumniDepartment").value.trim();
-    let company = document.getElementById("alumniCompany").value.trim();
-    let designation = document.getElementById("alumniDesignation").value.trim();
-    let experience = document.getElementById("alumniExperience").value;
-    let pass = document.getElementById("alumniPass").value;
-    let cpass = document.getElementById("alumniCPass").value;
-
-    if(name === ""){
-        alert("Name required");
-        return false;
-    }
-
-    if(!validateEmail(email)){
-        alert("Invalid email");
-        return false;
-    }
-
-    if(!validatePhone(phone)){
-        alert("Phone must be 10 digits");
-        return false;
-    }
-
-    if(graduationYear === "" || graduationYear < 1990 || graduationYear > 2100){
-        alert("Please enter valid graduation year");
-        return false;
-    }
-
-    if(department === ""){
-        alert("Department required");
-        return false;
-    }
-
-    if(company === ""){
-        alert("Company name required");
-        return false;
-    }
-
-    if(designation === ""){
-        alert("Designation required");
-        return false;
-    }
-
-    if(experience === "" || experience < 0){
-        alert("Please enter valid experience");
-        return false;
-    }
-
-    if(!validatePassword(pass)){
-        alert("Password must be at least 6 characters");
-        return false;
-    }
-
-    if(pass !== cpass){
-        alert("Passwords do not match");
-        return false;
-    }
-
-    return true;
-}
-
-// ===============================
-// STUDENT PROFILE VALIDATION
-// ===============================
-function validateStudentForm(){
-    let name = document.getElementById("studentName").value.trim();
-    let email = document.getElementById("studentEmail").value.trim();
-    let phone = document.getElementById("studentPhone").value.trim();
-    let graduationYear = document.getElementById("studentGraduationYear").value.trim();
-    let department = document.getElementById("studentDepartment").value.trim();
-    let company = document.getElementById("studentCompany").value.trim();
-    let designation = document.getElementById("studentDesignation").value.trim();
-    let experience = document.getElementById("studentExperience").value;
-    let skills = document.getElementById("studentSkills").value.trim();
-
-    if(name === ""){
-        alert("Student name required");
-        return false;
-    }
-
-    if(email === ""){
-        alert("Email required");
-        return false;
-    }
-
-    if(!validateEmail(email)){
-        alert("Invalid email format");
-        return false;
-    }
-
-    if(phone !== "" && !validatePhone(phone)){
-        alert("Phone must be 10 digits");
-        return false;
-    }
-
-    if(graduationYear !== "" && (graduationYear < 1990 || graduationYear > 2100)){
-        alert("Please enter valid graduation year");
-        return false;
-    }
-
-    if(department === ""){
-        alert("Department required");
-        return false;
-    }
-
-    if(designation === ""){
-        alert("Designation required");
-        return false;
-    }
-
-    if(experience !== "" && experience < 0){
-        alert("Experience cannot be negative");
-        return false;
-    }
-
-    if(skills === ""){
-        alert("Skills/Domain required");
-        return false;
-    }
-
-    return true;
-}
-
-// ===============================
-// LOGIN VALIDATION
-// ===============================
-function validateLogin(){
-    let email = document.getElementById("loginEmail").value;
-    let pass = document.getElementById("loginPass").value;
-
-    if(!validateEmail(email)){
-        alert("Enter valid email");
-        return false;
-    }
-
-    if(pass === ""){
-        alert("Password required");
-        return false;
-    }
-
-    return true;
-}
-
-// ===============================
-// JOB / INTERNSHIP VALIDATION
-// ===============================
-function validatePostForm(){
-    let postType = document.getElementById("jobPostType").value;
-    let title = document.getElementById("jobTitle").value.trim();
-    let company = document.getElementById("jobCompany").value.trim();
-    let location = document.getElementById("jobLocation").value.trim();
-    let eligibility = document.getElementById("jobEligibility").value.trim();
-    let duration = document.getElementById("jobDuration").value;
-    let stipend = document.getElementById("jobStipend").value.trim();
-    let postedDate = document.getElementById("jobPostedDate").value;
-
-    if(title === ""){
-        alert("Job Title required");
-        return false;
-    }
-
-    if(company === ""){
-        alert("Company name required");
-        return false;
-    }
-
-    if(location === ""){
-        alert("Location required");
-        return false;
-    }
-
-    if(eligibility === ""){
-        alert("Eligibility criteria required");
-        return false;
-    }
-
-    // Only validate internship fields if Internship is selected
-    if(postType === "Internship"){
-        if(duration === "" || duration <= 0){
-            alert("Duration must be positive");
-            return false;
-        }
-
-        if(stipend === ""){
-            alert("Stipend required for internships");
-            return false;
-        }
-    }
-
-    if(postedDate === ""){
-        alert("Posted date required");
-        return false;
-    }
-
-    return true;
-}
-
-// ===============================
-// STUDENT / ALUMNI REGISTRATION VALIDATION
-// ===============================
-function validateRegisterForm(){
-    let name = document.getElementById("regName").value;
-    let email = document.getElementById("regEmail").value;
-    let phone = document.getElementById("regPhone").value;
-    let pass = document.getElementById("regPass").value;
-    let cpass = document.getElementById("regCPass").value;
-
-    if(name === ""){
-        alert("Name required");
-        return false;
-    }
-
-    if(!validateEmail(email)){
-        alert("Invalid email");
-        return false;
-    }
-
-    if(!validatePhone(phone)){
-        alert("Phone must be 10 digits");
-        return false;
-    }
-
-    if(!validatePassword(pass)){
-        alert("Password must be at least 6 characters");
-        return false;
-    }
-
-    if(pass !== cpass){
-        alert("Passwords do not match");
-        return false;
-    }
-
-    return true;
-}
->>>>>>> 414849608c4551c6b8b230b4fd34394e9265c393

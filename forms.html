@@ -19,16 +19,36 @@
         <li class="nav-item"><a class="nav-link" data-nav href="/danpss/dashboard">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" data-nav href="/danpss/register.html">Register</a></li>
         <li class="nav-item"><a class="nav-link" data-nav href="/danpss/login.html">Login</a></li>
+        <li class="nav-item"><a class="nav-link" data-nav href="/danpss/logout.jsp">Logout</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="page-shell">
-  <div class="page-header">
-    <span class="kicker">Role Data Forms</span>`r`n    <h1 class="page-title mt-2">Forms Hub</h1>
-    <p class="section-muted mb-0">Only one Login and one Account Registration exist. These are operational data forms for Student, Alumni, and Placement workflows.</p>
-  </div>
+<div class="page-shell app-main">
+  <section class="app-panel dashboard-hero mb-4">
+    <div class="dashboard-hero-copy">
+      <span class="kicker">Forms Workspace</span>
+      <h1 class="page-title mt-3">Forms Hub</h1>
+      <p class="section-muted mb-0">Maintain student, alumni, and opportunity data through a cleaner set of focused workflows.</p>
+      <div class="dashboard-actions">
+        <a class="btn btn-primary" href="/danpss/dashboard">Open Dashboard</a>
+        <a class="btn btn-outline-primary" href="/danpss/reports/jobs">View Opportunities</a>
+      </div>
+    </div>
+    <div class="dashboard-side">
+      <div class="soft-card">
+        <div class="label">Workflow Pattern</div>
+        <div class="content">Profile, publish, report</div>
+        <div class="dashboard-note mt-2">Each form feeds the same integrated dashboard and reporting experience.</div>
+      </div>
+      <div class="soft-card">
+        <div class="label">Access Model</div>
+        <div class="content">Role-based</div>
+        <div class="dashboard-note mt-2">Form processing is controlled by authenticated role permissions.</div>
+      </div>
+    </div>
+  </section>
 
   <div class="row g-4">
     <div class="col-lg-4">
@@ -55,12 +75,12 @@
   </div>
 
   <div class="app-card mt-4">
-    <h2 class="h5">Recommended User Flow</h2>
+    <h2 class="h5">Suggested Flow</h2>
     <div class="row g-3 mt-1">
-      <div class="col-md-3"><strong>Step 1</strong><div class="section-muted">Register Account</div></div>
-      <div class="col-md-3"><strong>Step 2</strong><div class="section-muted">Login</div></div>
-      <div class="col-md-3"><strong>Step 3</strong><div class="section-muted">Complete role-relevant form</div></div>
-      <div class="col-md-3"><strong>Step 4</strong><div class="section-muted">Use Dashboard + Reports</div></div>
+      <div class="col-md-3"><strong>1. Sign in</strong><div class="section-muted">Open your role workspace.</div></div>
+      <div class="col-md-3"><strong>2. Update data</strong><div class="section-muted">Complete the relevant form.</div></div>
+      <div class="col-md-3"><strong>3. Review output</strong><div class="section-muted">Check dashboard and report views.</div></div>
+      <div class="col-md-3"><strong>4. Repeat</strong><div class="section-muted">Keep data current as activities change.</div></div>
     </div>
   </div>
 
